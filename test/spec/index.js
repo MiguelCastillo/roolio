@@ -28,7 +28,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule has a single match for `test.js`", function() {
       beforeEach(function() {
-        rule.addMatch("test.js");
+        rule.addMatcher("test.js");
       });
 
       it("then match for `test.js` is true", function() {
@@ -55,7 +55,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule is RegExp('\\.js$') for matching `.js` file extensions", function() {
       beforeEach(function() {
-        rule.addMatch(new RegExp("\\.js$"));
+        rule.addMatcher(new RegExp("\\.js$"));
       });
 
       it("then match for `test.js` matches", function() {
@@ -78,7 +78,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule is a string to match extensions with `\\.js$`", function() {
       beforeEach(function() {
-        rule.addMatch(Rule.matcher.regex("\\.js$"));
+        rule.addMatcher(Rule.matcher.regex("\\.js$"));
       });
 
       it("then match for `test.js` matches", function() {
@@ -101,7 +101,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule is a string to match extensions with `/\\.js$/`", function() {
       beforeEach(function() {
-        rule.addMatch(/\.js$/);
+        rule.addMatcher(/\.js$/);
       });
 
       it("then match for `test.js` matches", function() {
@@ -125,7 +125,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
     describe("when the rule is to match file extensions with built in matcher", function() {
       describe("and matching file extension `js`", function() {
         beforeEach(function() {
-          rule.addMatch(Rule.matcher.extension("js"));
+          rule.addMatcher(Rule.matcher.extension("js"));
         });
 
         it("then `test.js` matches", function() {
@@ -147,7 +147,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
       describe("and matching file extension `js` and `jsx`", function() {
         beforeEach(function() {
-          rule.addMatch(Rule.matcher.extension("js|jsx"));
+          rule.addMatcher(Rule.matcher.extension("js|jsx"));
         });
 
         it("then `test.js` matches", function() {
@@ -169,7 +169,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
       describe("and matching file extension `js`, `jsx`, and `json`", function() {
         beforeEach(function() {
-          rule.addMatch(Rule.matcher.extension("js|jsx|json"));
+          rule.addMatcher(Rule.matcher.extension("js|jsx|json"));
         });
 
         it("then `test.js` matches", function() {
@@ -197,7 +197,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule has a custom rule to minimatch for `*.js`", function() {
       beforeEach(function() {
-        rule.addMatch(minimatcher("*.js"));
+        rule.addMatcher(minimatcher("*.js"));
       });
 
       it("then match for `test.js` is true", function() {
@@ -216,7 +216,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule has a custom rule to minimatch for `**/*.js`", function() {
       beforeEach(function() {
-        rule.addMatch(minimatcher("**/*.js"));
+        rule.addMatcher(minimatcher("**/*.js"));
       });
 
       it("then match for `test.js` is true", function() {
@@ -235,7 +235,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule has a custom rule to minimatch for `!**/*.js`", function() {
       beforeEach(function() {
-        rule.addMatch([minimatcher("!**/*.js")]);
+        rule.addMatcher([minimatcher("!**/*.js")]);
       });
 
       it("then match for `test.js` is false", function() {
@@ -254,7 +254,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when the rule has two matches, `test1.js` and `test2.js`", function() {
       beforeEach(function() {
-        rule.addMatch(["test1.js", "test2.js"]);
+        rule.addMatcher(["test1.js", "test2.js"]);
       });
 
       it("then match for `test1.js` is true", function() {
@@ -273,7 +273,7 @@ define(["dist/index", "minimatch"], function(Rule, minimatch) {
 
     describe("when checking if the criteria is a string", function() {
       beforeEach(function() {
-        rule.addMatch(Rule.matcher.string);
+        rule.addMatcher(Rule.matcher.string);
       });
 
       it("then match for `random string` is true", function() {

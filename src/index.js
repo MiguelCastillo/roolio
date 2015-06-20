@@ -74,7 +74,7 @@ Rule.prototype.getLength = function() {
  *
  * @returns {Rule} this instance.
  */
-Rule.prototype.addMatch = function(match) {
+Rule.prototype.addMatcher = function(match) {
   this._match = this._match.concat(Rule.configureMatch(match));
   return this;
 };
