@@ -10,9 +10,8 @@ require = (function() {
     "urlArgs": 'bust=' + (new Date()).getTime()
   });
 
-  importer.ignore({
-    match: ["chai", "minimatch", "dist/index"]
-  });
+  // Add modules to exclude from pipeline processing
+  importer.ignore(["chai", "minimatch", "dist/index"]);
 
   bitimports.Logger.enableAll();
   return importer.require;
