@@ -22,7 +22,7 @@ The default matcher will do a regex test if a regex is provided, otherwise it wi
 ``` javascript
 var rule = new Rule();
 
-rule.addMatch(['hello', /hola/]);
+rule.addMatcher(['hello', /hola/]);
 
 rule.match('hello');        // Will test true
 rule.match('hola world');   // Will test true
@@ -37,7 +37,7 @@ File extension matcher, which verifies if an input string has particular file ex
 ``` javascript
 var rule = new Rule();
 
-rule.addMatch(Rule.matcher.extension('js|jsx|json'));
+rule.addMatcher(Rule.matcher.extension('js|jsx|json'));
 
 rule.match('test.js');   // Will test true
 rule.match('test.jsx');  // Will test true
@@ -53,7 +53,7 @@ string matcher, which verifies if the input string matches one of the matching r
 ``` javascript
 var rule = new Rule();
 
-rule.addMatch(Rule.matcher.string('test.js'));
+rule.addMatcher(Rule.matcher.string('test.js'));
 
 rule.match('test.js');   // Will test true
 rule.match('test.jsx');  // Will test false
@@ -67,7 +67,7 @@ You can actually just check if the input is a string.
 ``` javascript
 var rule = new Rule();
 
-rule.addMatch(Rule.matcher.string);
+rule.addMatcher(Rule.matcher.string);
 
 rule.match('some randome string');   // Will test true
 rule.match('');                      // Will test true
@@ -90,7 +90,7 @@ function customMatcher(criteria) {
 
 var rule = new Rule();
 
-rule.addMatch([customMatcher('Standing up'), customMatcher('Dont stand up'));
+rule.addMatcher([customMatcher('Standing up'), customMatcher('Dont stand up'));
 
 rule.match('Some randome string');   // Will test true
 rule.match('some randome string');   // Will test false
@@ -100,7 +100,7 @@ rule.match('dance party');           // Will test false
 
 ### Rules API
 
-#### addMatch
+#### addMatcher
 
 Function that takes a single matching rule, or an array of them. Matching rules added with this method are aggregated, and returns itself to enable chaining.
 
@@ -108,8 +108,8 @@ Function that takes a single matching rule, or an array of them. Matching rules 
 var rule = new Rule();
 
 rule
-  .addMatch(Rule.matcher.string)
-  .addMatch(/hello world/);
+  .addMatcher(Rule.matcher.string)
+  .addMatcher(/hello world/);
 ```
 
 #### match || matchAny
@@ -121,8 +121,8 @@ var rule = new Rule();
 
 // Match is true
 rule
-  .addMatch(Rule.matcher.string)
-  .addMatch(/hello world/);
+  .addMatcher(Rule.matcher.string)
+  .addMatcher(/hello world/);
   .match('test');
 ```
 
@@ -135,8 +135,8 @@ var rule = new Rule();
 
 // Match is false
 rule
-  .addMatch(Rule.matcher.string)
-  .addMatch(/hello world/);
+  .addMatcher(Rule.matcher.string)
+  .addMatcher(/hello world/);
   .matchAll('test');
 
 // Match is true
@@ -154,8 +154,8 @@ var rule = new Rule();
 
 // Length returns 2
 rule
-  .addMatch(Rule.matcher.string)
-  .addMatch(/hello world/)
+  .addMatcher(Rule.matcher.string)
+  .addMatcher(/hello world/)
   .getLength();
 ```
 
