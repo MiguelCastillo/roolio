@@ -1,9 +1,7 @@
 [![Build Status](https://travis-ci.org/MiguelCastillo/roolio.svg?branch=travis-deployment)](https://travis-ci.org/MiguelCastillo/roolio)
-
+[![Join the chat at https://gitter.im/MiguelCastillo/roolio](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MiguelCastillo/roolio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## roolio
-
-[![Join the chat at https://gitter.im/MiguelCastillo/roolio](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MiguelCastillo/roolio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Composable rule matcher
 
