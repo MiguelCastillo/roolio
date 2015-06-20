@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "0.12"
+  - '0.12'
 
 before_install:
   - npm install -g grunt-cli
@@ -10,23 +10,23 @@ deploy:
     api_key:
       secure: ssONgb2GGqH+d2K64ChLh2JAR0SCvmE8e+ssdq41BI4NJzAcYJVszs49Svrhl7/qtEqz1Ei78opz5FVcm0quwjhVNQ9Gic+HB1YWN5dLZEVt1Potz5OBGbkXJ6wi7gbsOIyRYyODCHpDtqhR6jOjtaRjCufV2yq3d0VqJ+ie+vgSxf6s3nto6KJ3AmQ152s8LhoTvA52ngxsWW80N9RBVP1GLrcXfjJGuc8ra7YvD285nSTZtdRQLKjhVvR+5ByaHvrsXUHqVsmvZjSdZPLRlinQaenNeFu5v/dgedsF7EQvWSl+f8L90X1a0ka5BSykatsbOyALc7UMVBrtdRxNJYjuci3NzkKzGAoF/xMUlwdP2hTapO5GSyJ3YE/ehmmnF/1JNKx1Dvzf0wxBZxO0hAfexeDaDvg5BMCw4XMAusAipDJgbrY2o9DOsDUKFuAJQlO6m/lMplt5foeA6YJ7g5TQFBTR+TBor6tOo3h6YS3n+3IbByNf2yQG3vlkFJim+juqB3E5NwUhpB5YJb+027nDxc0SFfxJmzTNWd5Hu1IS5rZ6xR9ePc7kB8cD6ybgsOM1pTYy87BSXrcjv6CRF7Q0r5TE2E9VlNO74S7msCpMsIM+ZMLwYVeBE5V9oIiieOZ+sp8WqTPF5W6dcXnbjzhCUxKrZuMlzU9FWEDwKG0=
     file:
-      - "dist/index.js"
-      - "dist/index.min.js"
-      - "dist/index.min.js.map"
+      - 'dist/index.js'
+      - 'dist/index.min.js'
+      - 'dist/index.min.js.map'
     skip_cleanup: true
     on:
       repo: MiguelCastillo/roolio
       tags: true
 
   - provider: s3
-    access_key_id: AKIAJGGTPSBAMBLGK7EA
+    access_key_id: AKIAJLZ5UAUCXAEIA2CA
     secret_access_key:
-      secure: ckdjNymE3a90FB5kXbzan3RVlzH4frnjfQP5W+mzsFdDKGMsrRFOOkRkm7sdvJzOO/NlBEWvdAYUMXFs/aTUzX/InJnnH+wMeLCHovYOw4FUIzMh7Z7gxPI2hWClY+r55fG78ykl+xG4GHT70L7eN3anhqlTY3ZNPtXCZB1YmVU=
+      secure: wh4jsRlcPZrfdA3VfVHzhhS+b4hk2H/gEI74O/1Qc/JZxeJsvv0z1ZkEkYLHIiFjm3Bhk1J4ZXQfIh0NxzG7iQ1/LF+xcAeWUTQ3gAe4+qHd4gvoAn7yvqoy92X2QmVzPVP1WukDCG+XCbcjqK60ObL+caEqSxTYzZ625h082zDyWZK7VCH+st87aCfNDNXZisKOY41y2yqF6niG1QHLjYHWGI18PaHNp5vw9Ng3BVjI+BTQ55iruTYX6Y0V1JuKj2EwfmXr8LLY1e8tVKEs+Ra2nkPFf07e2/C+2QaxaUxnH5KmQY3bliCrc8uEibPxY0t1ryf2ZDiONrV6Q3e8m2lYNOcCxqdiNsdDmYgEm0AR4LEPD9KaDqX13YCIgqUp839P66EoT7enJkSU1RphW7cwLQVudrmgFfWVtJOwyNRrD+gIH78RxQ28kFUqfXkp/XdeUs6OrAsPigNEzR6uclxLu7wXXtlVFvtmboYPfbcQM8o3DXW4osAdmbUgU3F+y5L2ULUz3+a0w9hXXnII7Ua2b90oHPjFl3JfjMIx8v4Y82MIGV3p8zIUzYSAF4BLQ2TscS7NOexUualkokVaN2+K0hQPKkj0zmBGBjMFKWpYdyeenkFIYx1pS23iP35gDUKym9oA+a+eXUjBlUkZpZ/ANzNKAadM4P0Owu3BSM4=
     bucket: hoistedjs
     local-dir: dist
-    upload-dir: "assets/js"
+    upload-dir: 'assets/js/roolio'
+    acl: 'public_read'
     skip_cleanup: true
-    acl: public_read
     on:
       repo: MiguelCastillo/roolio
       tags: true
