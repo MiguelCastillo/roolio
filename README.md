@@ -3,6 +3,8 @@
 
 ## roolio
 
+[![Join the chat at https://gitter.im/MiguelCastillo/roolio](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MiguelCastillo/roolio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Composable rule matcher
 
 Create rules to check if data matches a particular criteria. Rules are built with one or more `matcher`s so that you can compose sequences of `matcher`s to test data against. There are a few built in `matcher`s to get you started with, but you can create your own as well.
