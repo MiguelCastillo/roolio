@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/MiguelCastillo/roolio.svg?branch=travis-deployment)](https://travis-ci.org/MiguelCastillo/roolio)
+
+
 ## roolio
 
 > Composable rule matcher
