@@ -5,19 +5,19 @@
 
 > Composable rule matcher
 
-Create rules that you can use to check if data matches a particular criteria. The rules are built with one or more `matcher`s so that you can compose sequences of rules. There are a few built in `matcher`s to get you started with, but you can create your own as well.
+Create rules to check if data matches a particular criteria. Rules are built with one or more `matcher`s so that you can compose sequences of `matcher`s to test data against. There are a few built in `matcher`s to get you started with, but you can create your own as well.
 
 
 ### matchers
 
-Are functions that check if input data matches a criteria. For example, you can check if some input data is a string, or if it is all CAPS.
+Are functions that check if input data matches a criteria. For example, you can check if input data is a string, or if the string is all CAPS.
 
 There are a few of these default matchers.
 
 
 #### default
 
-The default matcher will do a RegExp test if a regex is provided, otherwise it will do a strict equality comparison.
+The default matcher will do a regex test if a regex is provided, otherwise it will do a strict equality comparison.
 
 ``` javascript
 var rule = new Rule();
@@ -32,7 +32,7 @@ rule.match('hi world');     // Will test false
 
 #### extension
 
-Matcher for file extensions. You can specify one or more file extensions if the input string has a particular file extension.
+File extension matcher, which verifies if an input string has particular file extensions. You can specify one or more file extensions in a single matcher.
 
 ``` javascript
 var rule = new Rule();
@@ -48,7 +48,7 @@ rule.match('test.js.a'); // Will test false
 
 #### string
 
-Matcher for strings. This will verify if the input string matches one of the matching rules.
+string matcher, which verifies if the input string matches one of the matching rules.
 
 ``` javascript
 var rule = new Rule();
@@ -77,9 +77,9 @@ rule.match(null);                    // Will test false
 
 #### custom rule matchers
 
-Rule matchers are just functions.  So you can pass in your own function if you want custom behavior.  For example, you can create your own custom matcher to check objects properties.
+Rule matchers are just functions. So you can pass in your own functions if you want custom behavior. For example, you can create your own custom matcher to check objects properties.
 
-Here is an arbitrary custom matcher that checks if the first letter of the input string matches one of the matching rules:
+Here is an arbitrary custom matcher that checks if the first letter of the input string is the same as the first letter of one of the matching rules:
 
 ``` javascript
 function customMatcher(criteria) {
@@ -102,7 +102,7 @@ rule.match('dance party');           // Will test false
 
 #### addMatch
 
-Function that takes one or an array of matching rules. Matching rules added with this method are aggregated, and it returns itself to enable chaining.
+Function that takes a single matching rule, or an array of them. Matching rules added with this method are aggregated, and returns itself to enable chaining.
 
 ``` javascript
 var rule = new Rule();
@@ -138,12 +138,16 @@ rule
   .addMatch(Rule.matcher.string)
   .addMatch(/hello world/);
   .matchAll('test');
+
+// Match is true
+rule
+  .matchAll('hello world');
 ```
 
 
 #### getLength
 
-Function that returns the number of matching rules configured in a particular rule.
+Function that returns the number of matchers in a particular rule.
 
 ``` javascript
 var rule = new Rule();
