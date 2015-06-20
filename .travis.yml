@@ -1,6 +1,32 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "0.12"
 
 before_install:
   - npm install -g grunt-cli
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: ssONgb2GGqH+d2K64ChLh2JAR0SCvmE8e+ssdq41BI4NJzAcYJVszs49Svrhl7/qtEqz1Ei78opz5FVcm0quwjhVNQ9Gic+HB1YWN5dLZEVt1Potz5OBGbkXJ6wi7gbsOIyRYyODCHpDtqhR6jOjtaRjCufV2yq3d0VqJ+ie+vgSxf6s3nto6KJ3AmQ152s8LhoTvA52ngxsWW80N9RBVP1GLrcXfjJGuc8ra7YvD285nSTZtdRQLKjhVvR+5ByaHvrsXUHqVsmvZjSdZPLRlinQaenNeFu5v/dgedsF7EQvWSl+f8L90X1a0ka5BSykatsbOyALc7UMVBrtdRxNJYjuci3NzkKzGAoF/xMUlwdP2hTapO5GSyJ3YE/ehmmnF/1JNKx1Dvzf0wxBZxO0hAfexeDaDvg5BMCw4XMAusAipDJgbrY2o9DOsDUKFuAJQlO6m/lMplt5foeA6YJ7g5TQFBTR+TBor6tOo3h6YS3n+3IbByNf2yQG3vlkFJim+juqB3E5NwUhpB5YJb+027nDxc0SFfxJmzTNWd5Hu1IS5rZ6xR9ePc7kB8cD6ybgsOM1pTYy87BSXrcjv6CRF7Q0r5TE2E9VlNO74S7msCpMsIM+ZMLwYVeBE5V9oIiieOZ+sp8WqTPF5W6dcXnbjzhCUxKrZuMlzU9FWEDwKG0=
+    file:
+      - "dist/index.js"
+      - "dist/index.min.js"
+      - "dist/index.min.js.map"
+    skip_cleanup: true
+    on:
+      repo: MiguelCastillo/roolio
+      tags: true
+
+  - provider: s3
+    access_key_id: AKIAJGGTPSBAMBLGK7EA
+    secret_access_key:
+      secure: ckdjNymE3a90FB5kXbzan3RVlzH4frnjfQP5W+mzsFdDKGMsrRFOOkRkm7sdvJzOO/NlBEWvdAYUMXFs/aTUzX/InJnnH+wMeLCHovYOw4FUIzMh7Z7gxPI2hWClY+r55fG78ykl+xG4GHT70L7eN3anhqlTY3ZNPtXCZB1YmVU=
+    bucket: hoistedjs
+    local-dir: dist
+    upload-dir: "assets/js"
+    skip_cleanup: true
+    acl: public_read
+    on:
+      repo: MiguelCastillo/roolio
+      tags: true
