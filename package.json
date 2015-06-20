@@ -1,6 +1,6 @@
 {
   "name": "roolio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {},
   "main": "src/index.js",
   "scripts": {
