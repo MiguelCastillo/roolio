@@ -61,20 +61,21 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'build': {
+      build: {
         files: {
           'dist/index.js': ['src/index.js']
         },
         options: {
+          banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>. (c) <%= grunt.template.today("yyyy") %> Miguel Castillo. Licensed under MIT */',
           browserifyOptions: {
-            'detectGlobals': false,
-            'standalone': 'roolio'
+            detectGlobals: false,
+            standalone: 'roolio'
           }
         }
       }
     },
     uglify: {
-      'build': {
+      build: {
         options: {
           preserveComments: 'some',
           sourceMap: true
@@ -91,24 +92,11 @@ module.exports = function(grunt) {
         commitMessage: 'Release v<%= version %>',
         afterBump: ['build']
       }
-    },
-    usebanner: {
-      'build': {
-        options: {
-          position: 'top',
-          banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>. (c) <%= grunt.template.today("yyyy") %> Miguel Castillo. Licensed under MIT */',
-          linebreak: true
-        },
-        files: {
-          src: ['dist/**.js']
-        }
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-release');
-  grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -116,7 +104,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'usebanner:build', 'uglify:build']);
+  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build']);
   grunt.registerTask('serve', ['concurrent:test']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
 };
