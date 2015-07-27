@@ -8,9 +8,9 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "bit-imports": "^0.3.3",
-    "browserify": "~10.2.4",
-    "chai": "~3.0.0",
+    "bit-imports": "^0.3.6",
+    "browserify": "~11.0.0",
+    "chai": "~3.2.0",
     "grunt": "~0.4.5",
     "grunt-browserify": "~3.8.0",
     "grunt-concurrent": "~2.0.0",
@@ -21,9 +21,9 @@
     "grunt-mocha": "~0.4.13",
     "grunt-release": "^0.13.0",
     "jshint-stylish": "~2.0.1",
-    "minimatch": "git+https://github.com/MiguelCastillo/minimatch",
+    "minimatch": "~2.0.10",
     "mocha": "~2.2.5",
-    "sinon": "~1.15.3",
+    "sinon": "~1.15.4",
     "spromise": "^0.9.3"
   },
   "browser": {},
