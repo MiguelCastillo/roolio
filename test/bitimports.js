@@ -1,9 +1,8 @@
-var require;
-require = (function() {
+var System;
+System = (function() {
   var importer = bitimports.config({
     "baseUrl": "../",
     "paths": {
-      "mocha": "../node_modules/mocha/mocha",
       "chai": "../node_modules/chai/chai",
       "minimatch": "node_modules/minimatch/browser"
     },
@@ -11,8 +10,7 @@ require = (function() {
   });
 
   // Add modules to exclude from pipeline processing
-  importer.ignore(["chai", "minimatch", "dist/index"]);
-
-  bitimports.Logger.enableAll();
-  return importer.require;
+  importer.ignore(["dist/index"]);
+  importer.logger.enableAll();
+  return importer;
 })();
