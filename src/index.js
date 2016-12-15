@@ -14,7 +14,7 @@ var matcher = require('./matcher');
 function Rule(options) {
   options = options || {};
   this.name  = Rule.configureName(options.name);
-  this.matchers = Rule.configureMatch(options.match || options.matchers);
+  this.matchers = options.hasOwnProperty('match') || options.hasOwnProperty('matchers') ? Rule.configureMatch(options.match || options.matchers) : [];
 }
 
 
@@ -44,10 +44,8 @@ Rule.configureName = function(name) {
  */
 Rule.configureMatch = function(matchers) {
   if (arguments.length === 0) {
-    throw new TypeError('Must specificy matching rules');
+    throw new TypeError('Must specify matching rules');
   }
-
-  matchers = matchers === undefined ? [] : matchers;
 
   return [].concat(matchers).map(function(item) {
     return (item && item.constructor === Function) ? item : matcher(item);
@@ -77,7 +75,7 @@ Rule.prototype.getLength = function() {
  *
  * @returns {Rule} this instance.
  */
-Rule.prototype.addMatcher = function(matchers) {
+Rule.prototype.addMatchers = Rule.prototype.addMatcher = function(matchers) {
   this.matchers = this.matchers.concat(Rule.configureMatch(matchers));
   return this;
 };
