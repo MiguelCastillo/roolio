@@ -2,7 +2,7 @@ var matcher = require('./matcher');
 
 
 /**
- * Provides functioanlity for aggregating matching rules that can
+ * Provides functionality for aggregating matching rules that can
  * then be compared against a criteria to determine if the criteria
  * is met. The matching rules can be customized beyond simple string
  * comparison. Please take a look at {@link matchers}
@@ -13,8 +13,8 @@ var matcher = require('./matcher');
  */
 function Rule(options) {
   options = options || {};
-  this._name  = Rule.configureName(options.name);
-  this._match = Rule.configureMatch(options.match);
+  this.name  = Rule.configureName(options.name);
+  this.matchers = Rule.configureMatch(options.match || options.matchers);
 }
 
 
@@ -40,13 +40,16 @@ Rule.configureName = function(name) {
  *  it is not, then provide a function.  Furthermore, match can be an array
  *  of matching rules.
  *
- * @returns {Array.<Rule>} array of configured rule matchers.
+ * @returns {function[]} array of matcher functions.
  */
-Rule.configureMatch = function(match) {
-  match = match || [];
-  match = !(match instanceof Array) ? [match] : match;
+Rule.configureMatch = function(matchers) {
+  if (arguments.length === 0) {
+    throw new TypeError('Must specificy matching rules');
+  }
 
-  return match.map(function(item) {
+  matchers = matchers === undefined ? [] : matchers;
+
+  return [].concat(matchers).map(function(item) {
     return (item && item.constructor === Function) ? item : matcher(item);
   });
 };
@@ -58,12 +61,12 @@ Rule.configureMatch = function(match) {
  * @returns {string} Name of the rule
  */
 Rule.prototype.getName = function() {
-  return this._name;
+  return this.name;
 };
 
 
 Rule.prototype.getLength = function() {
-  return this._match.length;
+  return this.matchers.length;
 };
 
 
@@ -74,8 +77,8 @@ Rule.prototype.getLength = function() {
  *
  * @returns {Rule} this instance.
  */
-Rule.prototype.addMatcher = function(match) {
-  this._match = this._match.concat(Rule.configureMatch(match));
+Rule.prototype.addMatcher = function(matchers) {
+  this.matchers = this.matchers.concat(Rule.configureMatch(matchers));
   return this;
 };
 
@@ -88,10 +91,10 @@ Rule.prototype.addMatcher = function(match) {
  * @returns {boolean} True if any rule is matched, false otherwise
  */
 Rule.prototype.match = Rule.prototype.matchAny = function(criteria) {
-  var matches = this._match;
+  var matchers = this.matchers;
   var i, length;
-  for (i = 0, length = matches.length; i < length; i++) {
-    if (Rule.__match(matches[i], criteria)) {
+  for (i = 0, length = matchers.length; i < length; i++) {
+    if (Rule.__match(matchers[i], criteria)) {
       return true;
     }
   }
@@ -107,10 +110,10 @@ Rule.prototype.match = Rule.prototype.matchAny = function(criteria) {
  * @returns {boolean} True is *all* rules match, false otherwise
  */
 Rule.prototype.matchAll = function(criteria) {
-  var matches = this._match;
+  var matchers = this.matchers;
   var i, length;
-  for (i = 0, length = matches.length; i < length; i++) {
-    if (!Rule.__match(matches[i], criteria)) {
+  for (i = 0, length = matchers.length; i < length; i++) {
+    if (!Rule.__match(matchers[i], criteria)) {
       return false;
     }
   }
