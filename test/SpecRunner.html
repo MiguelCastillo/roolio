@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css"/>
     <script type="text/javascript" src="../node_modules/mocha/mocha.js"></script>
     <script type="text/javascript" src="../node_modules/spromise/dist/spromise.min.js"></script>
-    <script>if (!window.hasOwnProperty("Promise")) window.Promise = spromise;</script>
-
     <script type="text/javascript" src="../node_modules/bit-imports/dist/bit-imports.min.js"></script>
     <script src="bitimports.js"></script>
   </head>
@@ -22,7 +20,19 @@
   <body>
     <div id="mocha"></div>
     <script>
-      require(["test/SpecRunner"]);
+      mocha.setup('bdd');
+      System.import(['chai']).then(function(modules) {
+        // Setup chai
+        var chai      = modules[0];
+        window.chai   = chai;
+        window.expect = chai.expect;
+        window.assert = chai.assert;
+
+        System.import(['test/SpecRunner.js']).then(function() {
+          // Run test
+          mocha.run();
+        })
+      });
     </script>
 
     <script src="//localhost:32020/livereload.js"></script>
