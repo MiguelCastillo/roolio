@@ -18,6 +18,7 @@ module.exports = function(grunt) {
           port: 8939,
           host: 'localhost',
           keepalive: true,
+          livereload: 32020,
           open: 'http://localhost:8939/test/SpecRunner.html'
         }
       }
@@ -36,52 +37,36 @@ module.exports = function(grunt) {
     },
     watch: {
       test: {
-        files: ['src/**/*.js', 'test/**/*.js', '*.js'],
-        tasks: ['jshint:all', 'browserify:build'],
+        files: ['test/**/*.js', 'dist/**/*.js', '*.js'],
         options: {
-          livereload: true
+          livereload: 32020
         }
-      }
-    },
-    jshint: {
-      all: {
-        options: {
-          jshintrc: true,
-          reporter: require('jshint-stylish')
-        },
-        src: ['src/**/*.js', 'test/**/*.js', '*.js']
       }
     },
     concurrent: {
       test: {
-        tasks: ['connect:keepalive', 'watch:test'],
+        tasks: ['connect:keepalive', 'watch:test', 'pakit:dev'],
         options: {
           logConcurrentOutput : true
         }
       }
     },
-    browserify: {
+    pakit: {
       build: {
         files: {
           'dist/index.js': ['src/index.js']
         },
         options: {
-          banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>. (c) <%= grunt.template.today("yyyy") %> Miguel Castillo. Licensed under MIT */',
-          browserifyOptions: {
-            detectGlobals: false,
-            standalone: 'roolio'
-          }
+          umd: 'roolio'
         }
-      }
-    },
-    uglify: {
-      build: {
-        options: {
-          preserveComments: 'some',
-          sourceMap: true
-        },
+      },
+      dev: {
         files: {
-          'dist/index.min.js': ['dist/index.js']
+          'dist/index.js': ['src/index.js']
+        },
+        options: {
+          watch: true,
+          umd: 'roolio'
         }
       }
     },
@@ -97,14 +82,12 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-release');
-  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-pakit');
   grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build']);
+  grunt.registerTask('build', ['pakit:build']);
   grunt.registerTask('serve', ['concurrent:test']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
 };
