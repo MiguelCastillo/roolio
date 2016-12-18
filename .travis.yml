@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '0.12'
+  - '4'
 
 before_install:
   - npm install -g grunt-cli
@@ -11,8 +11,7 @@ deploy:
       secure: ssONgb2GGqH+d2K64ChLh2JAR0SCvmE8e+ssdq41BI4NJzAcYJVszs49Svrhl7/qtEqz1Ei78opz5FVcm0quwjhVNQ9Gic+HB1YWN5dLZEVt1Potz5OBGbkXJ6wi7gbsOIyRYyODCHpDtqhR6jOjtaRjCufV2yq3d0VqJ+ie+vgSxf6s3nto6KJ3AmQ152s8LhoTvA52ngxsWW80N9RBVP1GLrcXfjJGuc8ra7YvD285nSTZtdRQLKjhVvR+5ByaHvrsXUHqVsmvZjSdZPLRlinQaenNeFu5v/dgedsF7EQvWSl+f8L90X1a0ka5BSykatsbOyALc7UMVBrtdRxNJYjuci3NzkKzGAoF/xMUlwdP2hTapO5GSyJ3YE/ehmmnF/1JNKx1Dvzf0wxBZxO0hAfexeDaDvg5BMCw4XMAusAipDJgbrY2o9DOsDUKFuAJQlO6m/lMplt5foeA6YJ7g5TQFBTR+TBor6tOo3h6YS3n+3IbByNf2yQG3vlkFJim+juqB3E5NwUhpB5YJb+027nDxc0SFfxJmzTNWd5Hu1IS5rZ6xR9ePc7kB8cD6ybgsOM1pTYy87BSXrcjv6CRF7Q0r5TE2E9VlNO74S7msCpMsIM+ZMLwYVeBE5V9oIiieOZ+sp8WqTPF5W6dcXnbjzhCUxKrZuMlzU9FWEDwKG0=
     file:
       - 'dist/index.js'
-      - 'dist/index.min.js'
-      - 'dist/index.min.js.map'
+      - 'dist/index.min.map'
     skip_cleanup: true
     on:
       repo: MiguelCastillo/roolio
