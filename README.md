@@ -3,6 +3,8 @@
 
 # roolio
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/MiguelCastillo/roolio.svg)](https://greenkeeper.io/)
+
 > Composable rule matcher
 
 Create rules to check if data matches a particular criteria. Rules are built with one or more `matcher`s so that you can compose sequences of `matcher`s to test data against. There are a few built in `matcher`s to get you started with, but you can create your own as well.
